@@ -2,6 +2,8 @@
  
 ##Learning Competencies 
 
+* Design database schema from problem data
+
 ##Summary 
 
  Take a look at the text representation of a database.  It looks similar to an Excel spreadsheet, which is a helpful way of visualizing how databases store information.
@@ -81,22 +83,22 @@ Each row in a database table should have a <strong>primary key</strong>.  This i
 
 The assumption that the primary key is an auto-incrementing integer called <code>id</code> is baked deeply into Rails.  Most web apps follow this convention, and we will, too.
 
-## Objectives
+##Releases
 
-### Design the schema
+###Release 0 : Design the schema
 
-Visit the [SQL Designer](/sql.html) on Socrates and recreate the <tt>students</tt> table above.
+Visit the [SQL Designer](https://socrates.devbootcamp.com/sql.html) on Socrates and recreate the <tt>students</tt> table above.
 
 In SQL Designer, you'll notice that you can pick a "type" for each field.  For example, the birthday field should be a "date" type.  There's a core set of datatypes that all SQL-based databases support, but many have additional types.
-You can read more about that at [w3schools.com](http://www.w3schools.com/sql/sql_datatypes.asp) or on [Wikipedia](http://en.wikipedia.org/wiki/SQL#Data_types).
+You can read more about that at [w3schools.com Data Types][] or on [Wikipedia : Data Types][].
 
 This is what the [table](http://f.cl.ly/items/0z3p0i1Y0G3h1A3V1d2p/Screen%20Shot%202012-05-17%20at%205.04.38%20PM.png) should look like, colors and all.
 
-Use [SQL Designer](/sql.html), recreate this table yourself.  When you are done, save the XML of your schema and copy it into the gist. Then, take a screenshot of your final schema design, and upload it using a free image-upload service like [Min.us](http://minus.com).  Paste the URL of the screenshot into your gist (before your XML code).  
+When you are done, save the XML of your schema and copy it into the `student_schema.md` file. Then, take a screenshot of your final schema design, and upload it using a free image-upload service like [Min.us](http://minus.com).  Paste the URL of the screenshot at the top of the file (before your XML code).  
 
-##Releases
-###Release 0 
-
-##Optimize Your Learning 
+<!-- ##Optimize Your Learning  -->
 
 ##Resources
+
+* [w3schools.com Data Types](http://www.w3schools.com/sql/sql_datatypes.asp)
+* [Wikipedia : Data Types](http://en.wikipedia.org/wiki/SQL#Data_types)
