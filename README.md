@@ -94,9 +94,8 @@ You can read more about that at [w3schools.com Data Types][] or on [Wikipedia : 
 
 This is what the [table](http://f.cl.ly/items/0z3p0i1Y0G3h1A3V1d2p/Screen%20Shot%202012-05-17%20at%205.04.38%20PM.png) should look like, colors and all.
 
-When you are done, save the XML of your schema and copy it into the `student_schema.md` file. Then, take a screenshot of your final schema design, and upload it using a free image-upload service like [Min.us](http://minus.com).  Paste the URL of the screenshot at the top of the file (before your XML code).  
+When you are done, take a screenshot of your schema, commit it, and issue a pull request.
 
-<!-- ##Optimize Your Learning  -->
 
 ##Resources
 
