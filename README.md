@@ -87,7 +87,7 @@ The assumption that the primary key is an auto-incrementing integer called <code
 
 ###Release 0 : Design the schema
 
-Visit the [SQL Designer](https://socrates.devbootcamp.com/sql.html) on Socrates and recreate the <tt>students</tt> table above.
+Visit the [SQL Designer](https://schemadesigner.devbootcamp.com/) on Socrates and recreate the <tt>students</tt> table above.
 
 In SQL Designer, you'll notice that you can pick a "type" for each field.  For example, the birthday field should be a "date" type.  There's a core set of datatypes that all SQL-based databases support, but many have additional types.
 You can read more about that at [w3schools.com Data Types][] or on [Wikipedia : Data Types][].
