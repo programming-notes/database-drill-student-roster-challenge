@@ -44,11 +44,3 @@ Design a table to support the `Student` class written in the file `student.rb`. 
 
 When the table is complete, take a screenshot of the schema, commit it, and submit the challenge.
 
-
-
-
-
-##Resources
-
-* [w3schools.com Data Types](http://www.w3schools.com/sql/sql_datatypes.asp)
-* [Wikipedia : Data Types](http://en.wikipedia.org/wiki/SQL#Data_types)
