@@ -1,8 +1,5 @@
 # Database Drill: A Table for Students 
  
-##Learning Competencies 
-
-* Design database schema from problem data
 
 ##Summary 
 
