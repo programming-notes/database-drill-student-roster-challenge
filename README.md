@@ -1,4 +1,4 @@
-# Database Drill Student Roster 
+# Database Drill: A Table for Students 
  
 ##Learning Competencies 
 
