@@ -38,18 +38,14 @@ Each class that we want to persist will need its own database table.  What do we
 ***Timestamps***.  It is also convention to keep track of when a record is first inserted into the database table and when the record was last updated.  To do this we use *created_at* and *updated_at* fields.
 
 
-##Releases
+## Releases
+### Release 0: Design a Table
+Design a table to support the `Student` class written in the file `student.rb`.  Use [Schema Designer](https://schemadesigner.devbootcamp.com/) to design the table with all of the necessary fields for the class's attributes.  Pick a [data type](http://www.w3schools.com/sql/sql_datatypes_general.asp) for each field (e.g., integer, varchar, date, etc.).  Ensure that the *id* and timestamp fields are included.
 
-###Release 0 : Design the schema
+When the table is complete, take a screenshot of the schema, commit it, and submit the challenge.
 
-Visit the [SQL Designer](https://schemadesigner.devbootcamp.com/) on Socrates and recreate the <tt>students</tt> table above.
 
-In SQL Designer, you'll notice that you can pick a "type" for each field.  For example, the birthday field should be a "date" type.  There's a core set of datatypes that all SQL-based databases support, but many have additional types.
-You can read more about that at [w3schools.com Data Types][] or on [Wikipedia : Data Types][].
 
-This is what the [table](http://f.cl.ly/items/0z3p0i1Y0G3h1A3V1d2p/Screen%20Shot%202012-05-17%20at%205.04.38%20PM.png) should look like, colors and all.
-
-When you are done, take a screenshot of your schema, commit it, and issue a pull request.
 
 
 ##Resources
