@@ -44,3 +44,5 @@ Design a table to support the `Student` class written in the file `student.rb`. 
 
 When the table is complete, take a screenshot of the schema, commit it, and submit the challenge.
 
+## Conclusion
+Designing database tables to support our classes is a skill we will be using throughout the rest of our time at Dev Bootcamp.  We need to understand how our Ruby objects map to the database.  Each class gets a table.  Each instance of the class is saved as a separate record in the database (i.e., is a separate row in the database).  The values of the object's attributes are stored in the table's fields (i.e., the columns).
