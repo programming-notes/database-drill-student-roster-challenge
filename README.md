@@ -32,7 +32,7 @@ Each class that we want to persist will need its own database table.  What do we
 *Table 2*.  Data held in an example employees table.
 
 
-***Unique Identifier***.  Each record in a database table needs a value that distinguishes it from all other records in the table.  The convention built into Rails is to use an *id* field (i.e., column); the value of the field is an integer, and it is set automatically by the database.  By convention, the *id* field also serves as the table's *primary key*.
+***Unique Identifier***.  Each record in a database table needs a value that distinguishes it from all other records in the table.  The convention is to use an *id* column whose value is set by the database using an auto-incremented integer:  1, 2, 3, etc.  By convention, the *id* field also serves as the table's *primary key*.
 
 
 ***Timestamps***.  It is also convention to keep track of when a record is first inserted into the database table and when the record was last updated.  To do this we use *created_at* and *updated_at* fields.
