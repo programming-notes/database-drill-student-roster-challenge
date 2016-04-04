@@ -1,103 +1,48 @@
-# Database Drill Student Roster 
+# Database Drill: A Table for Students 
  
-##Learning Competencies 
 
-* Design database schema from problem data
+## Summary
+We're going to design a database table to support persisting `Student` class objects (see `student.rb`).  When we want to save the state of objects in an application, we need to store the data somewhere.  We've seen object data stored in CSV file, text files, etc.  In building our web applications at Dev Bootcamp, we'll be using databases to store data.
 
-##Summary 
-
- Take a look at the text representation of a database.  It looks similar to an Excel spreadsheet, which is a helpful way of visualizing how databases store information.
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>id</th><th>first_name</th><th>last_name</th><th>gender</th><th>birthday</th><th>email</th><th>phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td><td>Nikolas</td><td>Friesen</td><td>female</td><td>1998-12-24</td><td>agustina_braun@wintheiser.info</td><td>449.897.7415</td>
-    </tr>
-    <tr>
-      <td>2</td><td>Randi</td><td>Halvorson</td><td>male</td><td>1997-01-29</td><td>heber.upton@bechtelarwisozk.biz</td><td>(697)436-2633</td>
-    </tr>
-    <tr>
-      <td>3</td><td>Sally</td><td>Buckridge</td><td>female</td><td>1997-10-30</td><td>nora@treutel.name</td><td>1-351-672-6358x02502</td>
-    </tr>
-    <tr>
-      <td>4</td><td>Morris</td><td>Swift</td><td>male</td><td>1995-06-27</td><td>cordell@sanfordkuhlman.org</td><td>(600)142-5639x9380</td>
-    </tr>
-    <tr>
-      <td>5</td><td>Sidney</td><td>Ortiz</td><td>male</td><td>1997-04-04</td><td>erling@davis.name</td><td>554.170.3265</td>
-    </tr>
-    <tr>
-      <td>6</td><td>Reid</td><td>Skiles</td><td>male</td><td>1994-10-13</td><td>mike_harvey@nikolaus.com</td><td>(543)511-2123</td>
-    </tr>
-    <tr>
-      <td>7</td><td>Violet</td><td>Dickens</td><td>female</td><td>1994-11-19</td><td>rubye_olson@collins.biz</td><td>1-410-486-1411x5058</td>
-    </tr>
-    <tr>
-      <td>8</td><td>Marguerite</td><td>Flatley</td><td>female</td><td>1995-05-28</td><td>wanda_okon@hane.name</td><td>572.978.5828x07860</td>
-    </tr>
-    <tr>
-      <td>9</td><td>Cary</td><td>Schoen</td><td>male</td><td>1996-07-31</td><td>fay@runolfon.biz</td><td>1-828-134-7828x66958</td>
-    </tr>
-    <tr>
-      <td>10</td><td>Mazie</td><td>Gibson</td><td>female</td><td>1995-09-23</td><td>doug@roberts.biz</td><td>144.038.7351x24117</td>
-    </tr>
-  </tbody>
-</table>
+If we want to persist objects in a database, the database will need a table for each object type.  For example, to persist `Student` objects, the database will need a table designed to hold student data.
 
 
-Each column (or in DB speak **field**) has a name.  We can describe the structure of this table independently of what data is in it.  We'd write the structure like this:
+### Designing a Database Table for a Class
+Each class that we want to persist will need its own database table.  What do we name the table?  What data should it hold?  There are a number of conventions to follow that will help us design a database table to support a given class.
 
-<pre>
-+------------+
-| students   |
-+------------+
-| id         |
-| first_name |
-| last_name  |
-| gender     |
-| birthday   |
-| email      |
-| phone      |
-+------------+
-</pre>
+***Table Names***.  Database table names are plural, snake case, and based on the class name.  For example, a database table for an `Employee` class would be named `employees` (see Table 1 for more examples).
 
-### Conventions
+| Class Name     | Table Name       |
+| :------------- | :---------       |
+| Employee       | employees        |
+| InsuranceClaim | insurance_claims |
+| Person         | people           |
 
-We can use any field names and table names we want, but there are some conventions that we follow for our own sanity.  These are conventions &mdash; you might see other conventions used elsewhere.
+*Table 1*.  Class names and their mappings to table names.
 
-1. Table names are pluralized, e.g., "students," "products," "todos," etc.
-2. Each row is uniquely identified by an automatically-incrementing integer field called <code>id</code>.  [ActiveRecord migrations](http://guides.rubyonrails.org/migrations.html) do this for you automatically, but you'll have to be explicit when designing your tables by hand.
-3. We use snake_case_like_this to name fields, rather than camelCaseLikeThis &mdash; the latter looks weird and out of place in Ruby.
-4. Fields that involve dates or times end in <code>&#95;at</code> or <code>&#95;on</code> (<code>created&#95;at</code>, <code>updated&#95;at</code>, <code>completed&#95;at</code>, etc.) unless it's really obvious they already refer to something time-related.  We'd say <code>birthday</code> rather than <code>born_on</code>, for example.
-5. When in doubt, make your field and table names as self-explanatory as possible.  Avoid field names like <code>type</code>, <code>kind</code>, <code>status</code>, etc.  They could refer to anything!  Err on the side of clarity, even if it seems verbose.  Other coders will appreciate it, and computers don't care if your field name is 20 characters long rather than 5 characters long.
-6. Rails includes <code>created&#95;at</code> and <code>updated&#95;at</code> fields by default, which record when a row is first added to a table and when it was last updated.  This is good record-keeping, so we'll generally include the same fields in our tables.
+***Rows and Columns***.  It can be helpful to envision a database table as a spreadsheet.  Each object is stored in its own row.  Each of the object's attributes is stored in a column with that attribute's name.  Given an `Employee` class with *name*, *hired_on*, and *payroll_number* attributes, we could persist employees in a table like Table 2 (notice the additional *id*, *created_at*, and *updated_at* columns).
+
+| id  | name           | hired_on   | payroll_number | created_at          | updated_at          |
+| :-- | :------------- | :--------- | :------------- | :------------------ | :------------------ |
+| 1   | Myriam Gosse   | 1995-11-01 | ARSI-9383720   | 2016-03-29 09:15:03 | 2016-03-29 09:15:03 |
+| 2   | Jung Pearson   | 1981-05-22 | AWKL-0394239   | 2016-02-29 12:00:00 | 2016-02-29 12:00:00 |
+| 3   | Ronald Ferrari | 1991-04-18 | KMBW-4893023   | 2016-03-17 13:57:35 | 2016-03-20 14:46:34 |
+| 4   | Priska Fodor   | 1993-04-20 | TYUR-7383921   | 2016-03-21 18:14:12 | 2016-03-21 18:14:12 |
+
+*Table 2*.  Data held in an example employees table.
 
 
-### Primary Keys
-
-Each row in a database table should have a <strong>primary key</strong>.  This is a field (or collection of fields) which uniquely identify that row from all other rows.  Rails defaults to using a <strong>synthetic primary key</strong>, which is just an arbitrary, auto-incrementing integer usually denoted by the field name <code>id</code>.  It's called "synthetic" because it doesn't have any inherent meaning.
-
-The assumption that the primary key is an auto-incrementing integer called <code>id</code> is baked deeply into Rails.  Most web apps follow this convention, and we will, too.
-
-##Releases
-
-###Release 0 : Design the schema
-
-Visit the [SQL Designer](https://schemadesigner.devbootcamp.com/) on Socrates and recreate the <tt>students</tt> table above.
-
-In SQL Designer, you'll notice that you can pick a "type" for each field.  For example, the birthday field should be a "date" type.  There's a core set of datatypes that all SQL-based databases support, but many have additional types.
-You can read more about that at [w3schools.com Data Types][] or on [Wikipedia : Data Types][].
-
-This is what the [table](http://f.cl.ly/items/0z3p0i1Y0G3h1A3V1d2p/Screen%20Shot%202012-05-17%20at%205.04.38%20PM.png) should look like, colors and all.
-
-When you are done, take a screenshot of your schema, commit it, and issue a pull request.
+***Unique Identifier***.  Each record in a database table needs a value that distinguishes it from all other records in the table.  The convention is to use an *id* column whose value is set by the database using an auto-incremented integer:  1, 2, 3, etc.  By convention, the *id* field also serves as the table's *primary key*.
 
 
-##Resources
+***Timestamps***.  It is also convention to keep track of when a record is first inserted into the database table and when the record was last updated.  To do this we use *created_at* and *updated_at* fields.
 
-* [w3schools.com Data Types](http://www.w3schools.com/sql/sql_datatypes.asp)
-* [Wikipedia : Data Types](http://en.wikipedia.org/wiki/SQL#Data_types)
+
+## Releases
+### Release 0: Design a Table
+Design a table to support the `Student` class written in the file `student.rb`.  Use [Schema Designer](https://schemadesigner.devbootcamp.com/) to design the table with all of the necessary fields for the class's attributes.  Pick a [data type](http://www.w3schools.com/sql/sql_datatypes_general.asp) for each field (e.g., integer, varchar, date, etc.).  Ensure that the *id* and timestamp fields are included.
+
+When the table is complete, take a screenshot of the schema, commit it, and submit the challenge.
+
+## Conclusion
+Designing database tables to support our classes is a skill we will be using throughout the rest of our time at Dev Bootcamp.  We need to understand how our Ruby objects map to the database.  Each class gets a table.  Each instance of the class is saved as a separate record in the database (i.e., is a separate row in the database).  The values of the object's attributes are stored in the table's fields (i.e., the columns).
